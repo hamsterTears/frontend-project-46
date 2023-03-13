@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { cwd } from 'node:process';
 import fs from 'fs';
-import { resolve, extname } from 'node:path';
+import { resolve /* extname */ } from 'node:path';
 import _ from 'lodash';
 
 const getFullFilePath = (filepath) => resolve(cwd(), filepath);
 
-const getFormat = (filepath) => extname(filepath).substring(1);
+// const getFormat = (filepath) => extname(filepath).substring(1);
 
 const readFile = (filePath) => fs.readFileSync(filePath, 'utf-8');
 
