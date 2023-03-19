@@ -9,7 +9,6 @@ const getFullFilePath = (filepath) => resolve(cwd(), filepath);
 // const getFormat = (filepath) => extname(filepath).substring(1);
 
 const readFile = (filePath) => fs.readFileSync(filePath, 'utf-8');
-
 const parsesFile = (dataFile) => JSON.parse(dataFile);
 
 const genDiff = (filepath1, filepath2) => {
@@ -17,6 +16,7 @@ const genDiff = (filepath1, filepath2) => {
   const pathFile2 = getFullFilePath(filepath2);
 
   const dataFile1 = readFile(pathFile1);
+  console.log(parsesFile(dataFile1));
   const dataFile2 = readFile(pathFile2);
 
   // const formatFile1 = getFormat(filepath1);
@@ -28,20 +28,25 @@ const genDiff = (filepath1, filepath2) => {
     const result = keys.map((key) => {
       if (_.has(data1, key) && _.has(data2, key)) {
         if (data1[key] === data2[key]) {
-          console.log(`  ${key}: ${data1[key]}`);
+          return [`  ${key}: ${data1[key]}`];
         } else {
-          console.log(`- ${key}: ${data1[key]}`);
-          console.log(`+ ${key}; ${data2[key]}`);
+          return [`- ${key}: ${data1[key]}`, `+ ${key}: ${data2[key]}`];
+          // console.log(`+ ${key}; ${data2[key]}`);
         }
       } else if (_.has(data1, key) && !_.has(data2, key)) {
-        console.log(`- ${key}: ${data1[key]}`);
+        return [`- ${key}: ${data1[key]}`];
       } else {
-        console.log(`+ ${key}: ${data2[key]}`);
-      }
-      return key;
+        return [`+ ${key}: ${data2[key]}`];
+      };
+        // return key;
     });
-    return result;
+    const flatResult = result.flat();
+    const objectResult = Object.fromEntries(flatResult.map((entry) => entry.split(': ')));
+
+    const diffString = JSON.stringify(objectResult, null, 2);
+    return diffString.split('"').join('');
   };
+
 
   return getTree(parsesFile(dataFile1), parsesFile(dataFile2));
 };

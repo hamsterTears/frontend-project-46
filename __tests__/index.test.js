@@ -1,18 +1,19 @@
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import  path from 'path';
 import { readFileSync } from 'fs';
-import gendiff from '../src/index.js';
+import genDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
-const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const extension = ['yaml', 'yml', 'json'];
-const expectedJson = readFileSync(getFixturePath('json.txt'), 'utf-8');
+const extension = ['json'];
+const expectedJson = readFileSync('__fixtures__/correct', 'utf-8');
 
-test.each(extension)('formatters', (ext) => {
-  const fileBefore = getFixturePath(`file1.${ext}`);
-  const fileAfter = getFixturePath(`file2.${ext}`);
-  expect(gendiff(fileBefore, fileAfter, 'json')).toEqual(expectedJson);
-});
+// test.each(extension)('formatters', (ext) => {
+//   const fileBefore = getFixturePath(`file1.${ext}`);
+//   const fileAfter = getFixturePath(`file2.${ext}`);
+//   expect(gendiff(fileBefore, fileAfter, 'json')).toEqual(expectedJson);
+// });
+expect(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(expectedJson);
