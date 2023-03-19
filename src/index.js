@@ -16,7 +16,6 @@ const genDiff = (filepath1, filepath2) => {
   const pathFile2 = getFullFilePath(filepath2);
 
   const dataFile1 = readFile(pathFile1);
-  console.log(parsesFile(dataFile1));
   const dataFile2 = readFile(pathFile2);
 
   // const formatFile1 = getFormat(filepath1);
