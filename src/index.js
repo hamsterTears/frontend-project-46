@@ -28,7 +28,8 @@ const genDiff = (filepath1, filepath2) => {
       if (_.has(data1, key) && _.has(data2, key)) {
         if (data1[key] === data2[key]) {
           return [`  ${key}: ${data1[key]}`];
-        } else {
+        // eslint-disable-next-line no-lone-blocks
+        } {
           return [`- ${key}: ${data1[key]}`, `+ ${key}: ${data2[key]}`];
           // console.log(`+ ${key}; ${data2[key]}`);
         }
@@ -36,8 +37,8 @@ const genDiff = (filepath1, filepath2) => {
         return [`- ${key}: ${data1[key]}`];
       } else {
         return [`+ ${key}: ${data2[key]}`];
-      };
-        // return key;
+      }
+      // return key;
     });
     const flatResult = result.flat();
     const objectResult = Object.fromEntries(flatResult.map((entry) => entry.split(': ')));
@@ -45,7 +46,6 @@ const genDiff = (filepath1, filepath2) => {
     const diffString = JSON.stringify(objectResult, null, 2);
     return diffString.split('"').join('');
   };
-
 
   return getTree(parsesFile(dataFile1), parsesFile(dataFile2));
 };
