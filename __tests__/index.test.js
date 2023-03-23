@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const extension = ['json'];
+const extension = ['json','yaml'];
 const expectedFile = fs.readFileSync(getFixturePath('correctFile'), 'utf-8');
 
 test.each(extension)('genDiff test', (ext) => {
