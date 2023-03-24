@@ -5,3 +5,7 @@
 
 Compares and shows differences between 2 JSON files:
 https://asciinema.org/a/568233
+
+Compares and shows differences between 2 YAML files:
+https://asciinema.org/a/569678
+<a href="https://asciinema.org/a/569678" target="_blank"><img src="https://asciinema.org/a/569678.svg" /></a>
