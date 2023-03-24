@@ -10,17 +10,17 @@ const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const ext = ['json'/* 'yaml' */, 'yml'];
+const extension = ['json'/* 'yaml' */, 'yml'];
 const expectedFile = fs.readFileSync(getFixturePath('correctFile'), 'utf-8');
 
-test('genDiff test', () => {
-  const file1 = getFixturePath('file1.json');
-  const file2 = getFixturePath('file2.json');
+test.each(extension)('genDiff test', (ext) => {
+  const file1 = getFixturePath(`file1.${ext}`);
+  const file2 = getFixturePath(`file2.${ext}`);
   expect(genDiff(file1, file2, 'json')).toStrictEqual(expectedFile);
 });
 
-test('genDiff test', () => {
-  const file3 = getFixturePath('file1.yml');
-  const file4 = getFixturePath('file2.yml');
+test.each(extension)('genDiff test', (ext) => {
+  const file3 = getFixturePath(`file1.${ext}`);
+  const file4 = getFixturePath(`file2.${ext}`);
   expect(genDiff(file3, file4, 'yaml')).toStrictEqual(expectedFile);
 });
