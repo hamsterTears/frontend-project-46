@@ -26,29 +26,14 @@ const stringify = (data, depth) => {
 const iter = (diff, depth = 1) => diff.map((node) => {
   switch (node.type) {
     case 'deleted':
-      return `${getTwoOrSixSpaces(depth)}- ${node.key}: ${stringify(
-        node.value,
-        depth,
-      )}`;
+      return `${getTwoOrSixSpaces(depth)}- ${node.key}: ${stringify(node.value, depth)}`;
     case 'added':
-      return `${getTwoOrSixSpaces(depth)}+ ${node.key}: ${stringify(
-        node.value,
-        depth,
-      )}`;
+      return `${getTwoOrSixSpaces(depth)}+ ${node.key}: ${stringify(node.value, depth)}`;
     case 'changed': {
-      return `${getTwoOrSixSpaces(depth)}- ${node.key}: ${stringify(
-        node.value1,
-        depth,
-      )}\n${getTwoOrSixSpaces(depth)}+ ${node.key}: ${stringify(
-        node.value2,
-        depth,
-      )}`;
+      return `${getTwoOrSixSpaces(depth)}- ${node.key}: ${stringify(node.value1, depth)}\n${getTwoOrSixSpaces(depth)}+ ${node.key}: ${stringify(node.value2, depth)}`;
     }
     case 'unchanged':
-      return `${getFourOrEightSpaces(depth)}${node.key}: ${stringify(
-        node.value,
-        depth,
-      )}`;
+      return `${getFourOrEightSpaces(depth)}${node.key}: ${stringify(node.value, depth)}`;
     case 'nested': {
       const lines = iter(node.children, depth + 1);
       return `${getFourOrEightSpaces(depth)}${node.key}: {\n${lines.join(
