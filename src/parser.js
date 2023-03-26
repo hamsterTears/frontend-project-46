@@ -9,7 +9,9 @@ const getDataFile = (pathFile) => readFileSync(resolve(cwd(), pathFile), 'utf-8'
 const getExtension = (pathFile) => extname(pathFile).substring(1);
 
 function getParse(pathFile) {
-  if (getExtension(pathFile) === 'yml' || getExtension(pathFile) === 'yaml') {
+  if (getExtension(pathFile) === 'yml') {
+    return yaml.load(getDataFile(pathFile));
+  } if (getExtension(pathFile) === 'yaml') {
     return yaml.load(getDataFile(pathFile));
   }
   return JSON.parse(getDataFile(pathFile));
