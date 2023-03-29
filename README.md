@@ -24,3 +24,8 @@ Compares and shows differences in Plain-format between 2 YAML or JSON files:
 
 <a href="https://asciinema.org/a/571929" target="_blank"><img src="https://asciinema.org/a/571929.svg" /></a>
 https://asciinema.org/a/571929
+
+Compares and shows differences in json-format between 2 YAML or JSON files:
+
+<a href="https://asciinema.org/a/571997" target="_blank"><img src="https://asciinema.org/a/571997.svg" /></a>
+https://asciinema.org/a/571997
