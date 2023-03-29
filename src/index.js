@@ -1,6 +1,5 @@
 import getParse from './parser.js';
 import getTree from './getTree.js';
-// import formatStylish from './formatters/stylish.js';
 import chooseFormat from './formatters/index.js';
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
