@@ -11,11 +11,11 @@ fix:
 	npx eslint . --fix
 
 
-help:
+gendiff:
 	node bin/gendiff.js -h
 
 
-gendiff: 
+run: 
 	node bin/gendiff.js ./__fixtures__/file1.json ./__fixtures__/file2.json 
 
 yaml:

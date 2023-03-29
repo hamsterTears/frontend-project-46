@@ -17,25 +17,29 @@ For help type: gendiff -h
 
 Installation:
 
-    #clone this repository on your machine with SSH key
-$git@github.com:hamsterTears/frontend-project-46.git
+#clone this repository on your machine with SSH key
+
+  $ git@github.com:hamsterTears/frontend-project-46.git
 
 #go to directory where you downloaded it
-$cd directory-name
+
+  $ cd directory-name
 
 # run the one of these command to install all necessary dependencies
-$make install
+
+  $ make install
 or
-$npm ci
+  $ npm ci
 
 # this command is responsible for linking commands from package.json to "./bin" directory
+
 $npm link
 
 #run utility
-$ node bin/gendiff.js -f <format> <filepath1> <filepath2>
+  $ node bin/gendiff.js -f <format> <filepath1> <filepath2>
 
 #run help 
-$ make help
+  $ make help
 
 
 
