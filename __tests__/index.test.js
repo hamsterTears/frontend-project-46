@@ -22,7 +22,7 @@ test('json', () => {
 });
 
 test('yaml/yml', () => {
-  const file3 = getFixturePath('file1.yaml');
+  const file3 = getFixturePath('file1.yml');
   const file4 = getFixturePath('file2.yml');
 
   expect(genDiff(file3, file4)).toEqual(readFile('stylish.txt'));
