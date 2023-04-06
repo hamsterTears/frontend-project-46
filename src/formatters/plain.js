@@ -9,14 +9,15 @@ const stringify = (value) => {
   }
   return String(value);
 };
-const iter = (tree, parent) => tree.flatMap((node) => {
+// const filtredTree = (tree) => tree.filter((node) => node.type !== 'unchanged');
+const iter = (tree, parent) => tree.filter((node) => node.type !== 'unchanged').flatMap((node) => {
   switch (node.type) {
     case 'added':
       return `Property '${[...parent, node.key].join('.')}' was added with value: ${stringify(node.value)}`;
     case 'deleted':
       return `Property '${[...parent, node.key].join('.')}' was removed`;
-    case 'unchanged':
-      return [];
+    // case 'unchanged':
+    //   return [];
     case 'changed':
       return `Property '${[...parent, node.key].join('.')}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
     case 'nested':
@@ -26,9 +27,6 @@ const iter = (tree, parent) => tree.flatMap((node) => {
   }
 });
 
-const getPlain = (diff) => {
-  const plainDiff = iter(diff, []).join('\n');
-  return plainDiff;
-};
+const plain = (diff) => iter(diff, []).join('\n');
 
-export default getPlain;
+export default plain;

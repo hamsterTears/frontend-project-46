@@ -45,8 +45,5 @@ const iter = (diff, depth = 1) => diff.map((node) => {
   }
 });
 
-const formatStylish = (tree) => {
-  const result = iter(tree, 1);
-  return `{\n${result.join('\n')}\n}`;
-};
-export default formatStylish;
+const stylish = (tree) => `{\n${iter(tree, 1).join('\n')}\n}`;
+export default stylish;
