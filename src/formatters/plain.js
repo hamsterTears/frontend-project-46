@@ -9,15 +9,13 @@ const stringify = (value) => {
   }
   return String(value);
 };
-// const filtredTree = (tree) => tree.filter((node) => node.type !== 'unchanged');
+
 const iter = (tree, parent) => tree.filter((node) => node.type !== 'unchanged').flatMap((node) => {
   switch (node.type) {
     case 'added':
       return `Property '${[...parent, node.key].join('.')}' was added with value: ${stringify(node.value)}`;
     case 'deleted':
       return `Property '${[...parent, node.key].join('.')}' was removed`;
-    // case 'unchanged':
-    //   return [];
     case 'changed':
       return `Property '${[...parent, node.key].join('.')}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
     case 'nested':
